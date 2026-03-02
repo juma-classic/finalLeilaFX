@@ -23,7 +23,7 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
         '📊 Navigate markets with confidence',
         '⚡ Fast execution, reliable returns',
         '💰 Growing your portfolio steadily',
-        '🏆 The Estate Traders - Your path to financial freedom',
+        '🏆 LEILA FX - Your path to financial freedom',
         '✨ Elevate your trading experience',
     ];
 
@@ -92,7 +92,7 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
             { duration: 900, text: 'Activating Trading Signals', progress: 70 },
             { duration: 700, text: 'Loading Strategies', progress: 85 },
             { duration: 600, text: 'Preparing Dashboard', progress: 95 },
-            { duration: 500, text: 'Welcome to The Estate Traders', progress: 100 },
+            { duration: 500, text: 'Welcome to LEILA FX', progress: 100 },
         ];
 
         let currentPhase = 0;

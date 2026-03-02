@@ -11,9 +11,9 @@ export const AppLogo = () => {
             href='https://www.mozaictradinghub.com/'
             target='_blank'
             rel='noopener noreferrer'
-            className='app-header__logo traders-den-logo'
+            className='app-header__logo leila-fx-logo'
         >
-            <span className='traders-den-text'>THE ESTATE TRADERS</span>
+            <span className='leila-fx-text'>LEILA FX</span>
         </a>
     );
 };

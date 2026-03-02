@@ -43,7 +43,7 @@ const useMobileMenuConfig = (client?: RootStore['client']) => {
             {
                 as: 'a',
                 href: 'https://mozaictradinghub.com',
-                label: localize('THE ESTATE TRADERS'),
+                label: localize('LEILA FX'),
                 LeftComponent: BrandDerivLogoCoralIcon,
             },
             {

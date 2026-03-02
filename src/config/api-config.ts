@@ -1,5 +1,5 @@
 /**
- * Centralized API Configuration for The Estate Traders
+ * Centralized API Configuration for LEILA FX
  * 
  * This file manages all Deriv API credentials and endpoints.
  * Update these values with your own app_id from https://api.deriv.com/app-registration
