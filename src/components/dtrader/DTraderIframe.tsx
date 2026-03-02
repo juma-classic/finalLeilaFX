@@ -10,6 +10,23 @@ const DTraderIframe: React.FC<DTraderIframeProps> = ({ className = '' }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const handleGoBack = () => {
+        // Find and click the Dashboard tab
+        const dashboardTab = document.querySelector('.dc-tabs__item[data-testid="dt_id-dashboard"]');
+        if (dashboardTab) {
+            (dashboardTab as HTMLElement).click();
+            return;
+        }
+
+        // Alternative: Try finding by text content
+        const allTabs = document.querySelectorAll('.dc-tabs__item');
+        allTabs.forEach(tab => {
+            if (tab.textContent?.includes('Dashboard')) {
+                (tab as HTMLElement).click();
+            }
+        });
+    };
+
     useEffect(() => {
         try {
             // Get authentication data from localStorage
@@ -59,10 +76,10 @@ const DTraderIframe: React.FC<DTraderIframeProps> = ({ className = '' }) => {
     if (isLoading) {
         return (
             <div className={`dtrader-loading ${className}`}>
-                <div className="dtrader-loading__spinner">
-                    <div className="spinner"></div>
+                <div className='dtrader-loading__spinner'>
+                    <div className='spinner'></div>
                 </div>
-                <p className="dtrader-loading__text">⚡ Loading DTrader...</p>
+                <p className='dtrader-loading__text'>⚡ Loading DTrader...</p>
             </div>
         );
     }
@@ -70,13 +87,10 @@ const DTraderIframe: React.FC<DTraderIframeProps> = ({ className = '' }) => {
     if (error) {
         return (
             <div className={`dtrader-error ${className}`}>
-                <div className="dtrader-error__icon">⚠️</div>
-                <h3 className="dtrader-error__title">Failed to Load DTrader</h3>
-                <p className="dtrader-error__message">{error}</p>
-                <button
-                    className="dtrader-error__button"
-                    onClick={() => window.location.reload()}
-                >
+                <div className='dtrader-error__icon'>⚠️</div>
+                <h3 className='dtrader-error__title'>Failed to Load DTrader</h3>
+                <p className='dtrader-error__message'>{error}</p>
+                <button className='dtrader-error__button' onClick={() => window.location.reload()}>
                     Retry
                 </button>
             </div>
@@ -85,12 +99,24 @@ const DTraderIframe: React.FC<DTraderIframeProps> = ({ className = '' }) => {
 
     return (
         <div className={`dtrader-container ${className}`}>
+            <button className='dtrader-back-button' onClick={handleGoBack} title='Back to Dashboard'>
+                <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <path
+                        d='M19 12H5M5 12L12 19M5 12L12 5'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                    />
+                </svg>
+                <span>Back to Dashboard</span>
+            </button>
             <iframe
                 src={dtraderUrl}
-                title="Deriv DTrader"
-                className="dtrader-iframe"
-                allow="clipboard-write"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals"
+                title='Deriv DTrader'
+                className='dtrader-iframe'
+                allow='clipboard-write'
+                sandbox='allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals'
             />
         </div>
     );
