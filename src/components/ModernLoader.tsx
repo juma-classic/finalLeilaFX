@@ -170,8 +170,19 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
             {/* Main content */}
             <div className='zeus-loader__content'>
+                {/* LEILA FX Logo */}
+                <div className='zeus-loader__logo-container'>
+                    <img 
+                        src='/leilafxlogo.png' 
+                        alt='LEILA FX Logo' 
+                        className='zeus-loader__logo'
+                    />
+                    <div className='zeus-loader__logo-glow' />
+                    <div className='zeus-loader__logo-glow zeus-loader__logo-glow--secondary' />
+                </div>
+
                 {/* Zeus Lightning Bolt Icon */}
-                <div className='zeus-loader__lightning-container'>
+                <div className='zeus-loader__lightning-container' style={{ display: 'none' }}>
                     {/* Animated lightning bolt with intricate parts */}
                     <svg
                         className='zeus-loader__lightning-bolt'

@@ -43,7 +43,7 @@ const DTraderIframe: React.FC<DTraderIframeProps> = ({ className = '' }) => {
                 token1: authToken,
                 cur1: currency,
                 lang: 'EN',
-                app_id: '128453', // Your Estate Traders app ID
+                app_id: '119554', // Your Estate Traders app ID
             });
 
             const url = `https://deriv-dtrader.vercel.app/dtrader?${params.toString()}`;

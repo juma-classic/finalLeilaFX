@@ -8,7 +8,7 @@ Successfully implemented a fully functional Copy Trading feature for The Estate 
 ### Core Features Implemented
 
 1. **Real-Time WebSocket Integration**
-   - Uses `robust-websocket-manager.js` with app ID 128453
+   - Uses `robust-websocket-manager.js` with app ID 119554
    - Automatic reconnection and connection monitoring
    - Master account authorization and balance tracking
    - Multiple follower account connections
@@ -135,7 +135,7 @@ class CopyTradingManager {
 - Uses existing `robust-websocket-manager.js`
 - Integrates with main app authentication
 - Reads token from localStorage (`active_loginid_token`)
-- Uses app ID 128453 (The Estate Traders)
+- Uses app ID 119554 (The Estate Traders)
 
 ### Navigation Integration
 - Added Copy Trading tab after DTrader
