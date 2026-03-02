@@ -165,18 +165,19 @@
     }
 }
 
-// Enhanced Modern Navigation Tabs with White Background, Maroon Buttons, Yellow Text
+// Enhanced Modern Navigation Tabs - Bull vs Bear Theme
 // LEILA FX - Professional Theme for Navigation Tabs
 .dc-tabs--enhanced {
-    background: #ffffff;
+    background: linear-gradient(135deg, #0a0e27 0%, #0f1419 50%, #140a14 100%);
     box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.1),
-        0 0 40px rgba(255, 215, 0, 0.05);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 191, 255, 0.1),
+        0 0 40px rgba(255, 68, 68, 0.1);
+    border-bottom: 2px solid rgba(0, 191, 255, 0.2);
     position: relative;
     overflow: hidden;
 
-    // Subtle overlay
+    // Bull vs Bear energy overlay
     &:before {
         content: '';
         position: absolute;
@@ -184,11 +185,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(180deg, rgba(255, 215, 0, 0.02) 0%, transparent 100%);
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(0, 191, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(255, 68, 68, 0.05) 0%, transparent 50%);
         pointer-events: none;
     }
 
-    // Lightning flash effect (subtle)
+    // Energy pulse effect
     &:after {
         content: '';
         position: absolute;
@@ -196,8 +199,14 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
-        animation: lightningFlash 8s ease-in-out infinite;
+        background: linear-gradient(
+            90deg, 
+            transparent, 
+            rgba(0, 191, 255, 0.1), 
+            rgba(255, 68, 68, 0.1), 
+            transparent
+        );
+        animation: energyWave 6s ease-in-out infinite;
         pointer-events: none;
         z-index: 0;
     }
@@ -217,9 +226,9 @@
         align-items: center;
         gap: 0.75rem;
         padding: 1rem 1.5rem !important;
-        // Zeus storm background on buttons
-        background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
-        border: 2px solid rgba(255, 215, 0, 0.3);
+        // Bull vs Bear gradient background
+        background: linear-gradient(135deg, #0a0e27 0%, #0f1419 50%, #140a14 100%);
+        border: 2px solid rgba(100, 100, 100, 0.3);
         border-radius: 12px;
         color: rgba(255, 255, 255, 0.85) !important;
         font-size: 11px;
@@ -230,10 +239,11 @@
         line-height: 1.2;
         box-shadow: 
             0 2px 8px rgba(0, 0, 0, 0.3),
-            0 0 15px rgba(255, 215, 0, 0.1);
+            0 0 10px rgba(0, 191, 255, 0.05),
+            0 0 10px rgba(255, 68, 68, 0.05);
         overflow: hidden;
 
-        // Electric glow effect base
+        // Energy glow effect base
         &:before {
             content: '';
             position: absolute;
@@ -242,37 +252,42 @@
             transform: translate(-50%, -50%);
             width: 0;
             height: 0;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            background: radial-gradient(
+                circle, 
+                rgba(0, 191, 255, 0.2) 0%, 
+                rgba(255, 68, 68, 0.2) 50%,
+                transparent 70%
+            );
             border-radius: 50%;
             transition: all 0.4s ease;
             pointer-events: none;
         }
 
-        // Ensure all text is white/gold
+        // Ensure all text is visible
         span,
         div {
             color: rgba(255, 255, 255, 0.85) !important;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
         }
 
-        // Icon styling with Zeus theme
+        // Icon styling with bull/bear theme
         svg {
             width: 24px;
             height: 24px;
             transition: all 0.3s ease;
-            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
-            color: #FFD700 !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 191, 255, 0.3));
+            color: #00BFFF !important;
         }
 
-        // Hover state - Electric charge
+        // Hover state - Bull energy (blue)
         &:hover:not(&--active) {
-            background: linear-gradient(135deg, #1a1f3a 0%, #2a2f4a 50%, #1f2439 100%);
-            border-color: rgba(255, 215, 0, 0.5);
-            color: #FFD700 !important;
+            background: linear-gradient(135deg, #0a1a2e 0%, #0f1f2e 50%, #0a1520 100%);
+            border-color: rgba(0, 191, 255, 0.6);
+            color: #00BFFF !important;
             transform: translateY(-2px);
             box-shadow: 
-                0 6px 20px rgba(255, 215, 0, 0.2),
-                0 0 30px rgba(255, 215, 0, 0.15);
+                0 6px 20px rgba(0, 191, 255, 0.3),
+                0 0 30px rgba(0, 191, 255, 0.2);
 
             &:before {
                 width: 200%;
@@ -281,63 +296,94 @@
 
             span,
             div {
-                color: #FFD700 !important;
-                text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+                color: #00BFFF !important;
+                text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
             }
 
             svg {
                 transform: scale(1.1);
-                filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5));
-                color: #FFD700 !important;
+                filter: drop-shadow(0 4px 8px rgba(0, 191, 255, 0.5));
+                color: #00BFFF !important;
             }
         }
 
-        // Active state - Zeus's divine power
+        // Active state - Bull vs Bear power
         &--active {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%) !important;
-            border-color: #FFD700 !important;
-            color: #000000 !important;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 127, 255, 0.2) 0%, 
+                rgba(0, 191, 255, 0.15) 25%,
+                rgba(255, 68, 68, 0.15) 75%,
+                rgba(255, 68, 68, 0.2) 100%
+            ) !important;
+            border: 2px solid transparent !important;
+            border-image: linear-gradient(
+                135deg,
+                #00BFFF 0%,
+                #0080FF 25%,
+                #FF4444 75%,
+                #CC0000 100%
+            ) 1 !important;
+            color: #FFFFFF !important;
             box-shadow:
-                0 8px 24px rgba(255, 215, 0, 0.4),
-                0 0 40px rgba(255, 215, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                0 8px 24px rgba(0, 191, 255, 0.3),
+                0 8px 24px rgba(255, 68, 68, 0.3),
+                0 0 40px rgba(0, 191, 255, 0.2),
+                0 0 40px rgba(255, 68, 68, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
 
             span,
             div {
-                color: #000000 !important;
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                color: #FFFFFF !important;
+                text-shadow: 
+                    0 0 10px rgba(0, 191, 255, 0.5),
+                    0 0 10px rgba(255, 68, 68, 0.5);
                 font-weight: 700;
             }
 
             svg {
                 transform: scale(1.15);
-                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
-                color: #000000 !important;
-                animation: iconGlow 2s ease-in-out infinite;
+                filter: 
+                    drop-shadow(0 2px 6px rgba(0, 191, 255, 0.6))
+                    drop-shadow(0 2px 6px rgba(255, 68, 68, 0.6));
+                color: #FFFFFF !important;
+                animation: iconDualGlow 2s ease-in-out infinite;
             }
 
-            // Active indicator - Lightning bolt effect
+            // Active indicator - Energy line
             &:after {
                 content: '';
                 position: absolute;
                 bottom: -2px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, #FFD700, #FFA500, #FFD700, transparent);
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: linear-gradient(
+                    90deg, 
+                    #00BFFF 0%, 
+                    #0080FF 25%,
+                    #FF4444 75%,
+                    #CC0000 100%
+                );
                 border-radius: 2px 2px 0 0;
-                animation: glow-line 2s ease-in-out infinite;
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+                animation: energyLine 2s ease-in-out infinite;
+                box-shadow: 
+                    0 0 10px rgba(0, 191, 255, 0.8),
+                    0 0 10px rgba(255, 68, 68, 0.8);
             }
 
-            // Electric particles
+            // Energy particles
             &:before {
                 width: 150%;
                 height: 150%;
-                background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-                animation: electricPulse 3s ease-in-out infinite;
+                background: radial-gradient(
+                    circle, 
+                    rgba(0, 191, 255, 0.15) 0%,
+                    rgba(255, 68, 68, 0.15) 50%,
+                    transparent 70%
+                );
+                animation: dualEnergyPulse 3s ease-in-out infinite;
             }
         }
 
@@ -347,7 +393,7 @@
         }
     }
 
-    // Badge for notifications (lightning themed)
+    // Badge for notifications (bull/bear themed)
     .tab-badge {
         position: absolute;
         top: 0.5rem;
@@ -355,16 +401,18 @@
         min-width: 20px;
         height: 20px;
         padding: 0 6px;
-        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        background: linear-gradient(135deg, #00BFFF 0%, #FF4444 100%);
         border-radius: 10px;
-        color: #000;
+        color: #FFF;
         font-size: 0.7rem;
         font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
-        animation: pulse-badge 2s infinite;
+        box-shadow: 
+            0 2px 8px rgba(0, 191, 255, 0.4),
+            0 2px 8px rgba(255, 68, 68, 0.4);
+        animation: pulseBadge 2s infinite;
     }
 
     // Responsive design
@@ -415,44 +463,56 @@
     }
 }
 
-// Zeus Theme Animations
-@keyframes pulse-badge {
+// Bull vs Bear Theme Animations
+@keyframes pulseBadge {
     0%,
     100% {
         transform: scale(1);
-        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
+        box-shadow: 
+            0 2px 8px rgba(0, 191, 255, 0.4),
+            0 2px 8px rgba(255, 68, 68, 0.4);
     }
 
     50% {
         transform: scale(1.1);
-        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.8);
+        box-shadow: 
+            0 4px 16px rgba(0, 191, 255, 0.6),
+            0 4px 16px rgba(255, 68, 68, 0.6);
     }
 }
 
-@keyframes glow-line {
+@keyframes energyLine {
     0%,
     100% {
         opacity: 0.6;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        box-shadow: 
+            0 0 10px rgba(0, 191, 255, 0.5),
+            0 0 10px rgba(255, 68, 68, 0.5);
     }
 
     50% {
         opacity: 1;
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+        box-shadow: 
+            0 0 20px rgba(0, 191, 255, 0.9),
+            0 0 20px rgba(255, 68, 68, 0.9);
     }
 }
 
-@keyframes iconGlow {
+@keyframes iconDualGlow {
     0%, 100% {
-        filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+        filter: 
+            drop-shadow(0 2px 6px rgba(0, 191, 255, 0.6))
+            drop-shadow(0 2px 6px rgba(255, 68, 68, 0.6));
     }
 
     50% {
-        filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.8));
+        filter: 
+            drop-shadow(0 4px 12px rgba(0, 191, 255, 0.9))
+            drop-shadow(0 4px 12px rgba(255, 68, 68, 0.9));
     }
 }
 
-@keyframes electricPulse {
+@keyframes dualEnergyPulse {
     0%, 100% {
         opacity: 0.3;
         transform: translate(-50%, -50%) scale(1);
@@ -464,7 +524,7 @@
     }
 }
 
-@keyframes lightningFlash {
+@keyframes energyWave {
     0%, 90%, 100% {
         left: -100%;
         opacity: 0;
