@@ -15,19 +15,19 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
     // Trading tips and motivational quotes
     const tradingTips = [
-        '🏡 Building wealth through smart trading',
-        '📈 Your trusted partner in market success',
-        '💼 Professional trading strategies for everyone',
-        '🎯 Precision trading, consistent results',
-        '💎 Quality execution in every trade',
-        '📊 Navigate markets with confidence',
-        '⚡ Fast execution, reliable returns',
-        '💰 Growing your portfolio steadily',
-        '🏆 LEILA FX - Your path to financial freedom',
-        '✨ Elevate your trading experience',
+        'Building wealth through smart trading',
+        'Your trusted partner in market success',
+        'Professional trading strategies for everyone',
+        'Precision trading, consistent results',
+        'Quality execution in every trade',
+        'Navigate markets with confidence',
+        'Fast execution, reliable returns',
+        'Growing your portfolio steadily',
+        'LEILA FX - Your path to financial freedom',
+        'Elevate your trading experience',
     ];
 
-    // Matrix-style falling characters (money symbols and code)
+    // Trading chart background with bull/bear theme
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -38,40 +38,152 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const characters = '$€£¥₿01{}<>[]();=+-*/%&|^~!@#'.split('');
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops: number[] = [];
+        // Candlestick data
+        const candlesticks: Array<{
+            x: number;
+            y: number;
+            height: number;
+            isBullish: boolean;
+            speed: number;
+            opacity: number;
+        }> = [];
 
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
+        const numCandlesticks = 40;
+        for (let i = 0; i < numCandlesticks; i++) {
+            candlesticks.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                height: Math.random() * 40 + 20,
+                isBullish: Math.random() > 0.5,
+                speed: Math.random() * 0.5 + 0.2,
+                opacity: Math.random() * 0.3 + 0.1,
+            });
+        }
+
+        // Particle system for energy effect
+        const particles: Array<{
+            x: number;
+            y: number;
+            vx: number;
+            vy: number;
+            color: string;
+            size: number;
+        }> = [];
+
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                color: Math.random() > 0.5 ? '#00BFFF' : '#FF4444',
+                size: Math.random() * 3 + 1,
+            });
         }
 
         const draw = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            // Dark gradient background
+            const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            bgGradient.addColorStop(0, 'rgba(10, 14, 39, 0.95)');
+            bgGradient.addColorStop(0.5, 'rgba(15, 20, 25, 0.95)');
+            bgGradient.addColorStop(1, 'rgba(20, 10, 20, 0.95)');
+            ctx.fillStyle = bgGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.font = `${fontSize}px monospace`;
+            // Draw candlesticks
+            candlesticks.forEach(candle => {
+                ctx.globalAlpha = candle.opacity;
 
-            for (let i = 0; i < drops.length; i++) {
-                const char = characters[Math.floor(Math.random() * characters.length)];
-                const x = i * fontSize;
-                const y = drops[i] * fontSize;
+                // Candlestick body
+                const bodyWidth = 8;
+                const wickWidth = 2;
 
-                // Color gradient: gold to electric blue
-                const gradient = ctx.createLinearGradient(x, y - 20, x, y + 20);
-                gradient.addColorStop(0, '#FFD700');
-                gradient.addColorStop(0.5, '#4169E1');
-                gradient.addColorStop(1, '#00BFFF');
-                ctx.fillStyle = gradient;
+                // Draw wick
+                ctx.fillStyle = candle.isBullish ? '#00BFFF' : '#FF4444';
+                ctx.fillRect(candle.x - wickWidth / 2, candle.y - candle.height / 2, wickWidth, candle.height);
 
-                ctx.fillText(char, x, y);
+                // Draw body
+                const bodyHeight = candle.height * 0.6;
+                const gradient = ctx.createLinearGradient(
+                    candle.x,
+                    candle.y - bodyHeight / 2,
+                    candle.x,
+                    candle.y + bodyHeight / 2
+                );
 
-                if (y > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+                if (candle.isBullish) {
+                    gradient.addColorStop(0, '#00BFFF');
+                    gradient.addColorStop(1, '#0080FF');
+                } else {
+                    gradient.addColorStop(0, '#FF4444');
+                    gradient.addColorStop(1, '#CC0000');
                 }
-                drops[i]++;
-            }
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(candle.x - bodyWidth / 2, candle.y - bodyHeight / 2, bodyWidth, bodyHeight);
+
+                // Glow effect
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = candle.isBullish ? '#00BFFF' : '#FF4444';
+
+                // Move candlestick
+                candle.y += candle.speed;
+                if (candle.y > canvas.height + 50) {
+                    candle.y = -50;
+                    candle.x = Math.random() * canvas.width;
+                    candle.isBullish = Math.random() > 0.5;
+                }
+            });
+
+            ctx.shadowBlur = 0;
+
+            // Draw energy particles
+            particles.forEach(particle => {
+                ctx.globalAlpha = 0.6;
+                ctx.fillStyle = particle.color;
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Add glow
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = particle.color;
+                ctx.fill();
+
+                // Move particle
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                // Wrap around screen
+                if (particle.x < 0) particle.x = canvas.width;
+                if (particle.x > canvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = canvas.height;
+                if (particle.y > canvas.height) particle.y = 0;
+            });
+
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+
+            // Draw connecting lines between nearby particles (energy web)
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.globalAlpha = (1 - distance / 150) * 0.2;
+                        ctx.strokeStyle = p1.color;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            ctx.globalAlpha = 1;
         };
 
         const interval = setInterval(draw, 33);
@@ -272,11 +384,11 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
                 {/* Brand name */}
                 <h1 className='zeus-loader__brand'>
-                    <span className='zeus-loader__brand-zeus'>THE ESTATE</span>
-                    <span className='zeus-loader__brand-trading'>TRADERS</span>
+                    <span className='zeus-loader__brand-zeus'>LEILA</span>
+                    <span className='zeus-loader__brand-trading'>FX</span>
                 </h1>
 
-                <p className='zeus-loader__tagline'>🏡 Professional Trading Platform 📈</p>
+                <p className='zeus-loader__tagline'>Professional Trading Platform</p>
 
                 {/* Loading text */}
                 <div className='zeus-loader__text-container'>
@@ -301,7 +413,26 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
                 {/* Trading Tip */}
                 <div className='zeus-loader__trading-tip'>
-                    <div className='zeus-loader__tip-icon'>⚡</div>
+                    <div className='zeus-loader__tip-icon'>
+                        <svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <defs>
+                                <linearGradient id='iconGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+                                    <stop offset='0%' stopColor='#FFD700' />
+                                    <stop offset='100%' stopColor='#FFA500' />
+                                </linearGradient>
+                            </defs>
+                            {/* Mechanical gear icon */}
+                            <circle cx='12' cy='12' r='3' fill='url(#iconGradient)' />
+                            <path
+                                d='M12 1L13.5 4.5L17 3L16 6.5L19.5 7.5L17.5 10.5L21 12L17.5 13.5L19.5 16.5L16 17.5L17 21L13.5 19.5L12 23L10.5 19.5L7 21L8 17.5L4.5 16.5L6.5 13.5L3 12L6.5 10.5L4.5 7.5L8 6.5L7 3L10.5 4.5L12 1Z'
+                                fill='url(#iconGradient)'
+                                opacity='0.6'
+                            />
+                            {/* Inner mechanical details */}
+                            <circle cx='12' cy='12' r='5' fill='none' stroke='#FFD700' strokeWidth='0.5' />
+                            <circle cx='12' cy='12' r='7' fill='none' stroke='#FFA500' strokeWidth='0.3' />
+                        </svg>
+                    </div>
                     <p className='zeus-loader__tip-text'>{tradingTip}</p>
                 </div>
             </div>
